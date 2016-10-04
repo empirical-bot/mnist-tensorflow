@@ -72,7 +72,7 @@ def main(_):
   import json
   results = json.dumps({
     'metric': 'Accuracy',
-    'value': value
+    'value': float(round(value,3))
   })
   f = open('/workspace/overall.json','w')
   f.write(results)
