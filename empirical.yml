@@ -1,0 +1,4 @@
+protocols:
+  softmax:
+    environment:
+      build: .
