@@ -66,8 +66,18 @@ def main(_):
   # Test trained model
   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
   accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-  print(sess.run(accuracy, feed_dict={x: mnist.test.images,
-                                      y_: mnist.test.labels}))
+  value = sess.run(accuracy, feed_dict={x: mnist.test.images,
+                                      y_: mnist.test.labels})
+  # Save results
+  import json
+  results = json.dumps({
+    'metric': 'Accuracy',
+    'value': value
+  })
+  f = open('/workspace/overall.json','w')
+  f.write(results)
+  f.close()
+
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
